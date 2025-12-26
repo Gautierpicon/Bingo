@@ -4,13 +4,24 @@
 	import { page } from '$app/stores';
 
 	let { children } = $props();
+
+	function togglePage() {
+		if ($page.url.pathname === '/') {
+			window.location.href = '/parametres';
+		} else {
+			window.location.href = '/';
+		}
+	}
 </script>
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<nav class="flex justify-center gap-4 border-b border-gray-300 p-4">
-	<a href="/" class:font-bold={$page.url.pathname === '/'}>Jeu</a>
-	<a href="/parametres" class:font-bold={$page.url.pathname === '/parametres'}>Paramètres</a>
-</nav>
+<button
+	onclick={togglePage}
+	class="fixed top-4 right-4 z-50 rounded-full bg-gray-200 p-3 text-2xl hover:bg-gray-300 md:text-3xl"
+	aria-label="Paramètres"
+>
+	⚙️
+</button>
 
 {@render children()}

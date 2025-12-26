@@ -2,7 +2,7 @@
 	import { useStar } from '../store';
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center gap-8 p-4">
+<div class="flex min-h-screen flex-col items-center gap-8 p-4 pt-20">
 	<h1 class="text-3xl font-bold">Paramètres</h1>
 
 	<label class="flex cursor-pointer items-center gap-4">
