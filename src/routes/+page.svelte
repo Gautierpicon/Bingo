@@ -1,14 +1,56 @@
 <script>
-	import { useStar } from './store';
+	import { onMount } from 'svelte';
+	import { useStar, hasPlayedGridAnimation } from './store';
+	import gsap from 'gsap';
 
 	let grid = Array.from({ length: 25 }, (_, i) => ({
 		id: i + 1,
 		checked: false
 	}));
 
+	let cellRefs = Array.from({ length: 25 }, () => null);
+	let bingoButtonRef = null;
+
+	onMount(() => {
+		if (!$hasPlayedGridAnimation) {
+			gsap.fromTo(
+				cellRefs.filter((ref) => ref !== null),
+				{
+					opacity: 0,
+					scale: 0.8
+				},
+				{
+					opacity: 1,
+					scale: 1,
+					duration: 0.5,
+					stagger: 0.03,
+					ease: 'back.out(1.2)',
+					onComplete: () => {
+						hasPlayedGridAnimation.set(true);
+					}
+				}
+			);
+		}
+	});
+
 	function toggleCell(index) {
 		grid[index].checked = !grid[index].checked;
 		grid = [...grid];
+
+		if (cellRefs[index]) {
+			gsap.fromTo(
+				cellRefs[index],
+				{ scale: 1 },
+				{
+					scale: 1.15,
+					duration: 0.1,
+					yoyo: true,
+					repeat: 1,
+					ease: 'power1.inOut'
+				}
+			);
+		}
+
 		checkWin();
 	}
 
@@ -52,9 +94,66 @@
 		}
 	}
 
+	$: if (winner && bingoButtonRef) {
+		gsap.fromTo(
+			bingoButtonRef,
+			{ opacity: 0, scale: 0.8 },
+			{ opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.5)' }
+		);
+	}
+
+	function createConfetti() {
+		const container = document.createElement('div');
+		container.style.cssText =
+			'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+		document.body.appendChild(container);
+
+		const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
+		const particles = 50;
+
+		for (let i = 0; i < particles; i++) {
+			const particle = document.createElement('div');
+			const size = Math.random() * 8 + 4;
+			const color = colors[Math.floor(Math.random() * colors.length)];
+			const startX = Math.random() * window.innerWidth;
+			const startY = Math.random() * window.innerHeight * 0.5;
+
+			particle.style.cssText = `
+				position:absolute;
+				width:${size}px;
+				height:${size}px;
+				background:${color};
+				border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+				left:${startX}px;
+				top:${startY}px;
+			`;
+
+			container.appendChild(particle);
+
+			gsap.to(particle, {
+				y: '+=100vh',
+				x: `+=${(Math.random() - 0.5) * 200}px`,
+				rotation: Math.random() * 720 - 360,
+				opacity: 0,
+				duration: Math.random() * 2 + 2,
+				ease: 'power1.out',
+				onComplete: () => particle.remove()
+			});
+		}
+
+		setTimeout(() => container.remove(), 4000);
+	}
+
 	function reset() {
+		createConfetti();
 		grid = grid.map((cell) => ({ ...cell, checked: false }));
 		winner = false;
+
+		gsap.fromTo(
+			cellRefs.filter((ref) => ref !== null),
+			{ scale: 1 },
+			{ scale: 0.95, duration: 0.2, yoyo: true, repeat: 1, ease: 'power1.inOut' }
+		);
 	}
 </script>
 
@@ -62,11 +161,12 @@
 	<div class="grid w-full max-w-md grid-cols-5 border-2 border-gray-400">
 		{#each grid as cell, index}
 			<button
+				bind:this={cellRefs[index]}
 				onclick={() => !($useStar && isCenterCell(index)) && toggleCell(index)}
 				disabled={$useStar && isCenterCell(index)}
 				class="flex aspect-square items-center justify-center border border-gray-300 text-xl font-bold transition-all md:text-2xl
           {isCellChecked(cell, index)
-					? 'bg-green-500 text-white'
+					? 'bg-green-500 text-white shadow-lg'
 					: 'bg-white text-gray-800 hover:bg-gray-100'}
           {$useStar && isCenterCell(index) ? 'cursor-not-allowed' : ''}"
 			>
@@ -91,11 +191,12 @@
 	</div>
 
 	<button
+		bind:this={bingoButtonRef}
 		onclick={reset}
 		disabled={!winner}
-		class="w-full max-w-md px-8 py-3 text-white transition-all
+		class="rounded-3xl w-full max-w-md px-8 py-3 text-white transition-all
       {winner
-			? 'cursor-pointer bg-green-500 hover:bg-green-600'
+			? 'cursor-pointer bg-green-500 shadow-lg hover:bg-green-600'
 			: 'cursor-not-allowed bg-gray-300'}"
 	>
 		Bingo

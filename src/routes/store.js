@@ -9,3 +9,13 @@ if (typeof window !== 'undefined') {
 		localStorage.setItem('useStar', value);
 	});
 }
+
+export const hasPlayedGridAnimation = writable(false);
+
+if (typeof window !== 'undefined') {
+	hasPlayedGridAnimation.set(sessionStorage.getItem('hasPlayedGridAnimation') === 'true');
+
+	hasPlayedGridAnimation.subscribe((value) => {
+		sessionStorage.setItem('hasPlayedGridAnimation', value);
+	});
+}
