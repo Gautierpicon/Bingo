@@ -4,6 +4,7 @@
 	import BackButton from '$lib/components/BackButton.svelte';
 
 	let formRef = null;
+	let gameCode = '';
 
 	onMount(() => {
 		gsap.fromTo(
@@ -24,7 +25,10 @@
 	});
 
 	function joinGame() {
-		window.location.href = '/jeu';
+		if (gameCode.trim()) {
+			localStorage.setItem('bingo_group_name', gameCode.trim());
+			window.location.href = '/jeu';
+		}
 	}
 </script>
 
@@ -48,14 +52,17 @@
 				<input
 					id="gameCode"
 					type="text"
+					bind:value={gameCode}
 					placeholder="Ex: ABC123"
 					class="w-full rounded-2xl border-4 border-gray-200 bg-white px-4 py-4 text-center text-2xl font-bold text-gray-800 transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-200 focus:outline-none"
+					onkeypress={(e) => e.key === 'Enter' && joinGame()}
 				/>
 			</div>
 
 			<button
 				onclick={joinGame}
-				class="w-full transform rounded-2xl border-4 border-white bg-linear-to-r from-blue-400 to-purple-500 px-8 py-4 text-2xl font-black text-white shadow-[0_8px_0_rgba(0,0,0,0.3)] transition-all hover:scale-105 hover:shadow-[0_12px_0_rgba(0,0,0,0.3)] active:scale-95 active:shadow-none"
+				disabled={!gameCode.trim()}
+				class="w-full transform rounded-2xl border-4 border-white bg-linear-to-r from-blue-400 to-purple-500 px-8 py-4 text-2xl font-black text-white shadow-[0_8px_0_rgba(0,0,0,0.3)] transition-all hover:scale-105 hover:shadow-[0_12px_0_rgba(0,0,0,0.3)] active:scale-95 active:shadow-none disabled:cursor-not-allowed disabled:opacity-50"
 			>
 				JOINDRE LA PARTIE
 			</button>
