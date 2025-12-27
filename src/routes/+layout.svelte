@@ -15,7 +15,7 @@
 
 <button
 	onclick={togglePage}
-	class="fixed top-4 right-4 z-50 rounded-full bg-gray-100 p-3 text-2xl hover:bg-gray-200 md:text-3xl"
+	class="fixed top-4 right-4 z-50 rounded-full border-4 border-white bg-white/20 p-3 text-2xl text-white shadow-lg backdrop-blur-sm hover:bg-white/30 md:text-3xl"
 	aria-label="Paramètres"
 >
 	<svg
