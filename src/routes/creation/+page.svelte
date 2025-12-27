@@ -27,9 +27,9 @@
 
 	function createGame() {
 		if (playerName.trim()) {
-			window.location.href = `/game?name=${encodeURIComponent(playerName.trim())}`;
+			window.location.href = `/jeu?name=${encodeURIComponent(playerName.trim())}`;
 		} else {
-			window.location.href = '/game';
+			window.location.href = '/jeu';
 		}
 	}
 </script>

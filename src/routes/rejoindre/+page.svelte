@@ -24,7 +24,7 @@
 	});
 
 	function joinGame() {
-		window.location.href = '/game';
+		window.location.href = '/jeu';
 	}
 </script>
 

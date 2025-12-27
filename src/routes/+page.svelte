@@ -25,11 +25,11 @@
 	});
 
 	function createGame() {
-		window.location.href = '/create';
+		window.location.href = '/creation';
 	}
 
 	function joinGame() {
-		window.location.href = '/join';
+		window.location.href = '/rejoindre';
 	}
 </script>
 
