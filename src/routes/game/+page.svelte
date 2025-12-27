@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { useStar, hasPlayedGridAnimation } from '../store';
 	import gsap from 'gsap';
+	import BackButton from '$lib/components/BackButton.svelte';
 
 	let grid = Array.from({ length: 25 }, (_, i) => ({
 		id: i + 1,
@@ -155,21 +156,12 @@
 			{ scale: 0.95, duration: 0.2, yoyo: true, repeat: 1, ease: 'power1.inOut' }
 		);
 	}
-
-	function goHome() {
-		window.location.href = '/';
-	}
 </script>
 
 <div
 	class="flex min-h-screen flex-col items-center justify-center gap-8 bg-linear-to-br from-purple-500 via-pink-500 to-orange-400 p-4"
 >
-	<button
-		onclick={goHome}
-		class="absolute top-4 left-4 rounded-2xl border-4 border-white bg-white/20 px-4 py-2 font-bold text-white shadow-lg backdrop-blur-sm hover:bg-white/30"
-	>
-		← Accueil
-	</button>
+	<BackButton />
 
 	<div class="grid w-full max-w-md grid-cols-5 border-4 border-white bg-white/90 shadow-2xl">
 		{#each grid as cell, index (cell.id)}
