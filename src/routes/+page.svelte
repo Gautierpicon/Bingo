@@ -34,7 +34,7 @@
 </script>
 
 <div
-	class="flex min-h-screen flex-col items-center justify-center gap-12 bg-linear-to-br from-purple-500 via-pink-500 to-orange-400 p-4"
+	class="relative flex min-h-screen flex-col items-center justify-center gap-12 bg-linear-to-br from-purple-500 via-pink-500 to-orange-400 p-4"
 >
 	<h1
 		bind:this={titleRef}
@@ -88,4 +88,14 @@
 			</span>
 		</button>
 	</div>
+
+	<a
+		href="https://github.com/Gautierpicon/Bingo"
+		target="_blank"
+		rel="noopener noreferrer"
+		class="fixed right-4 bottom-4 rounded-full bg-white/10 p-2 shadow-md backdrop-blur-sm transition-all hover:scale-110"
+		aria-label="GitHub Repository"
+	>
+		<img src="src/lib/assets/github.png" alt="GitHub" class="size-7 md:size-8" />
+	</a>
 </div>
