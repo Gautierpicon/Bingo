@@ -49,13 +49,13 @@
 
 			<div class="mb-6">
 				<label for="playerName" class="mb-2 block text-xl font-bold text-gray-700">
-					Votre nom
+					Nom de la partie
 				</label>
 				<input
 					id="playerName"
 					type="text"
 					bind:value={playerName}
-					placeholder="Ex: Marie"
+					placeholder="Ex: Partie entre amis 🎉"
 					class="w-full rounded-2xl border-4 border-gray-200 bg-white px-4 py-4 text-center text-2xl font-bold text-gray-800 transition-all focus:border-green-500 focus:ring-4 focus:ring-green-200 focus:outline-none"
 					onkeypress={(e) => e.key === 'Enter' && createGame()}
 				/>
