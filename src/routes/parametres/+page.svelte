@@ -36,9 +36,9 @@
 			</h1>
 
 			<label
-				class="flex cursor-pointer items-center gap-4 rounded-2xl border-4 border-gray-200 bg-white p-6 transition-all hover:border-indigo-400 hover:shadow-lg"
+				class="flex cursor-pointer items-start gap-4 rounded-2xl border-4 border-gray-200 bg-white p-6 transition-all hover:border-indigo-400 hover:shadow-lg"
 			>
-				<div class="relative flex h-8 w-8 items-center justify-center">
+				<div class="relative flex h-8 w-8 shrink-0 items-center justify-center">
 					<input
 						type="checkbox"
 						bind:checked={$useStar}
@@ -57,12 +57,13 @@
 						/>
 					</svg>
 				</div>
-				<span class="text-xl font-bold text-gray-800">Activer la case étoile au centre</span>
+				<div class="flex flex-col">
+					<span class="text-xl font-bold text-gray-800">Activer la case étoile au centre</span>
+					<span class="mt-2 text-base text-gray-600">
+						La case étoile au centre de la grille compte comme une case déjà cochée.
+					</span>
+				</div>
 			</label>
-
-			<p class="mt-6 text-center text-lg text-gray-600">
-				La case étoile au centre de la grille compte comme une case déjà cochée.
-			</p>
 		</div>
 	</div>
 </div>
