@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import BackButton from '$lib/components/BackButton.svelte';
+	import { useStar } from '../store';
 
 	let formRef = null;
 	let playerName = '';
@@ -59,6 +60,36 @@
 					onkeypress={(e) => e.key === 'Enter' && createGame()}
 				/>
 			</div>
+
+			<label
+				class="mb-6 flex cursor-pointer items-start gap-4 rounded-2xl border-4 border-gray-200 bg-white p-6 transition-all hover:border-green-400 hover:shadow-lg"
+			>
+				<div class="relative flex h-8 w-8 shrink-0 items-center justify-center">
+					<input
+						type="checkbox"
+						bind:checked={$useStar}
+						class="peer h-8 w-8 cursor-pointer appearance-none rounded-lg border-4 border-gray-300 bg-white transition-all checked:border-green-500 checked:bg-green-500"
+					/>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						class="pointer-events-none absolute size-5 text-white opacity-0 peer-checked:opacity-100"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 0 1 1.04-.208Z"
+							clip-rule="evenodd"
+						/>
+					</svg>
+				</div>
+				<div class="flex flex-col">
+					<span class="text-xl font-bold text-gray-800">Activer la case étoile au centre</span>
+					<span class="mt-2 text-base text-gray-600">
+						La case étoile au centre de la grille compte comme une case déjà cochée.
+					</span>
+				</div>
+			</label>
 
 			<button
 				onclick={createGame}
