@@ -45,7 +45,7 @@
 	<div bind:this={formRef} class="flex w-full max-w-md flex-1 flex-col justify-center py-8">
 		<div class="rounded-3xl border-4 border-white bg-white/90 p-8 shadow-2xl backdrop-blur-sm">
 			<h1
-				class="mb-6 bg-linear-to-r from-green-600 to-teal-600 bg-clip-text text-center text-5xl font-black text-transparent"
+				class="pb-6 bg-linear-to-r from-green-600 to-teal-600 bg-clip-text text-center text-5xl font-black text-transparent"
 			>
 				Créer
 			</h1>

@@ -44,7 +44,7 @@
 	<div bind:this={formRef} class="flex w-full max-w-md flex-1 flex-col justify-center py-8">
 		<div class="rounded-3xl border-4 border-white bg-white/90 p-8 shadow-2xl backdrop-blur-sm">
 			<h1
-				class="mb-7 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-center text-5xl font-black text-transparent"
+				class="pb-7 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-center text-5xl font-black text-transparent"
 			>
 				Rejoindre
 			</h1>
