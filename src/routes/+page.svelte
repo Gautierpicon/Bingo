@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import gsap from 'gsap';
 	import { players, isHost } from './store';
 	import githubImg from '$lib/assets/github.png';
@@ -30,11 +31,11 @@
 	});
 
 	function createGame() {
-		window.location.href = '/creation';
+		goto('/creation');
 	}
 
 	function joinGame() {
-		window.location.href = '/rejoindre';
+		goto('/rejoindre');
 	}
 </script>
 

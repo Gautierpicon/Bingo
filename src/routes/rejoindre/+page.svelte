@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import gsap from 'gsap';
 	import BackButton from '$lib/components/BackButton.svelte';
 	import { players, isHost } from '../store';
@@ -45,7 +46,7 @@
 			players.set([newPlayer]);
 			isHost.set(false);
 
-			window.location.href = '/salon';
+			goto('/salon');
 		}
 	}
 

@@ -1,6 +1,8 @@
 <script>
+	import { goto } from '$app/navigation';
+
 	function goHome() {
-		window.location.href = '/';
+		goto('/');
 	}
 </script>
 

@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 	import gsap from 'gsap';
 	import BackButton from '$lib/components/BackButton.svelte';
 	import { players, isHost } from '../store';
@@ -14,8 +14,6 @@
 	let groupName = '';
 
 	onMount(() => {
-		if (!browser) return;
-
 		currentPlayerName = localStorage.getItem('bingo_player_name') || '';
 		groupName = localStorage.getItem('bingo_group_name') || 'Partie';
 
@@ -111,8 +109,7 @@
 	}
 
 	function startGame() {
-		if (!browser) return;
-		window.location.href = '/jeu';
+		goto('/jeu');
 	}
 </script>
 
