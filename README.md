@@ -1,4 +1,3 @@
-
 # Bingo [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/Gautierpicon/Bingo/blob/main/LICENSE.md)
 
 Make your events more fun
@@ -8,9 +7,8 @@ Make your events more fun
 - Create a room / Join a room
 - Synchronised play between players
 - Personalise the bingo squares
-- customise your game: free centre square and/or mixed grid for each player 
+- customise your game: free centre square and/or mixed grid for each player
 - PWA available
-
 
 ## Tech Stack
 
@@ -18,14 +16,13 @@ Make your events more fun
 
 **Server:** Supabase
 
-
 ## Feedback
 
 Feedback are welcome! Feel free to open an [issue](https://github.com/Gautierpicon/Bingo/issues) or a [pull request](https://github.com/Gautierpicon/Bingo/pulls) on the GitHub repository.
 
 ## Contribute / Run Locally
 
-You will need to have [Bun](https://bun.sh/) installed. 
+You will need to have [Bun](https://bun.sh/) installed.
 
 Clone the project
 
@@ -50,4 +47,3 @@ Start the server
 ```bash
   bun run dev
 ```
-
