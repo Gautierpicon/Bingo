@@ -67,7 +67,7 @@
 
 			<div class="mb-6">
 				<label for="gameCode" class="mb-2 block text-xl font-bold text-gray-700">
-					Code de la partie
+					Code du salon
 				</label>
 				<input
 					id="gameCode"
@@ -100,7 +100,7 @@
 					? 'hover:scale-105 hover:shadow-[0_12px_0_rgba(0,0,0,0.3)] active:scale-95 active:shadow-none'
 					: ''}"
 			>
-				JOINDRE LA PARTIE
+				REJOINDRE LE SALON
 			</button>
 		</div>
 	</div>

@@ -67,7 +67,7 @@
 
 			<div class="mb-6">
 				<label for="groupName" class="mb-2 block text-xl font-bold text-gray-700">
-					Nom de la partie
+					Nom du salon
 				</label>
 				<input
 					id="groupName"
@@ -130,7 +130,7 @@
 					? 'hover:scale-105 hover:shadow-[0_12px_0_rgba(0,0,0,0.3)] active:scale-95 active:shadow-none'
 					: ''}"
 			>
-				CRÉER LA PARTIE
+				CRÉER LE SALON
 			</button>
 		</div>
 	</div>
