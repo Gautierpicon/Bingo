@@ -73,7 +73,7 @@
 					id="gameCode"
 					type="text"
 					bind:value={codeInput}
-					placeholder="Ex: ABC123"
+					placeholder="XXX XXX"
 					class="w-full rounded-2xl border-4 border-gray-200 bg-white px-4 py-4 text-center text-2xl font-bold text-gray-800 transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-200 focus:outline-none"
 					onkeypress={(e) => e.key === 'Enter' && document.getElementById('playerName')?.focus()}
 				/>
