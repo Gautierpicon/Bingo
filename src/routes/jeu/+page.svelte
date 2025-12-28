@@ -166,29 +166,37 @@
 >
 	<BackButton />
 
-	<div class="flex w-full max-w-md flex-col justify-center gap-6 py-6">
+	<div class="flex w-full max-w-lg flex-col justify-center gap-6 py-6">
 		<div class="text-center">
-			<p class="text-lg font-medium text-white opacity-90">{groupName}</p>
+			<p
+				class="inline-block bg-linear-to-r from-yellow-200 via-white to-yellow-200 bg-clip-text px-8 py-2 text-3xl font-black text-transparent md:text-4xl"
+			>
+				{groupName}
+			</p>
 		</div>
 
-		<div class="grid w-full grid-cols-5 border-4 border-white bg-white/90 shadow-2xl">
+		<div
+			class="grid w-full grid-cols-5 gap-2 rounded-3xl border-4 border-white bg-white/90 p-3 shadow-2xl md:gap-3 md:p-4"
+		>
 			{#each grid as cell, index (cell.id)}
 				<button
 					bind:this={cellRefs[index]}
 					onclick={() => !($useStar && isCenterCell(index)) && toggleCell(index)}
 					disabled={$useStar && isCenterCell(index)}
-					class="flex aspect-square cursor-pointer items-center justify-center border-2 border-gray-300 text-xl font-bold transition-all md:text-2xl
+					class="flex aspect-square cursor-pointer items-center justify-center rounded-xl border-2 text-2xl font-bold transition-all md:text-3xl
           {isCellChecked(cell, index)
-						? 'bg-green-500 text-white shadow-lg'
-						: 'bg-white text-gray-800 hover:bg-gray-100'}
-          {$useStar && isCenterCell(index) ? 'cursor-not-allowed' : ''}"
+						? 'border-orange-400 bg-linear-to-br from-yellow-400 via-orange-400 to-red-400 text-white shadow-lg'
+						: 'border-gray-200 bg-linear-to-br from-gray-50 to-gray-100 text-gray-800 shadow-md hover:border-purple-300 hover:from-purple-100 hover:to-pink-100'}
+          {$useStar && isCenterCell(index)
+						? 'cursor-not-allowed border-orange-400 bg-linear-to-br from-yellow-400 via-orange-400 to-red-400'
+						: ''}"
 				>
 					{#if $useStar && isCenterCell(index)}
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 							fill="currentColor"
-							class="size-6 text-black"
+							class="size-8 text-orange-700 md:size-10"
 						>
 							<path
 								fill-rule="evenodd"
@@ -207,9 +215,9 @@
 			bind:this={bingoButtonRef}
 			onclick={reset}
 			disabled={!winner}
-			class="w-full max-w-md transform rounded-3xl border-4 border-white px-8 py-4 text-2xl font-black text-white shadow-[0_8px_0_rgba(0,0,0,0.3)] transition-all
+			class="w-full max-w-lg transform rounded-3xl border-4 border-white px-8 py-4 text-xl font-black text-white shadow-[0_8px_0_rgba(0,0,0,0.3)] transition-all md:py-4 md:text-2xl
       {winner
-				? 'animate-bounce cursor-pointer bg-linear-to-r from-green-400 to-green-600 hover:scale-110 hover:shadow-[0_16px_0_rgba(0,0,0,0.5)]'
+				? 'animate-bounce cursor-pointer bg-linear-to-r from-yellow-400 via-orange-400 to-red-400 hover:scale-110 hover:from-yellow-300 hover:via-orange-300 hover:to-red-300 hover:shadow-[0_16px_0_rgba(0,0,0,0.5)]'
 				: 'cursor-not-allowed bg-gray-400'}"
 		>
 			BINGO ! 🎉
