@@ -2,13 +2,17 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import BackButton from '$lib/components/BackButton.svelte';
-	import { useStar } from '../store';
+	import { useStar, players, isHost } from '../store';
+	import profilImg from '$lib/assets/profil.png';
 
 	let formRef = null;
 	let groupName = '';
 	let playerName = '';
 
 	onMount(() => {
+		players.set([]);
+		isHost.set(false);
+
 		gsap.fromTo(
 			formRef,
 			{
@@ -30,7 +34,18 @@
 		if (groupName.trim() && playerName.trim()) {
 			localStorage.setItem('bingo_group_name', groupName.trim());
 			localStorage.setItem('bingo_player_name', playerName.trim());
-			window.location.href = '/jeu';
+
+			const host = {
+				id: Date.now(),
+				pseudo: playerName.trim(),
+				photo: profilImg,
+				isHost: true
+			};
+
+			players.set([host]);
+			isHost.set(true);
+
+			window.location.href = '/salon';
 		}
 	}
 
@@ -45,7 +60,7 @@
 	<div bind:this={formRef} class="flex w-full max-w-md flex-1 flex-col justify-center py-8">
 		<div class="rounded-3xl border-4 border-white bg-white/90 p-8 shadow-2xl backdrop-blur-sm">
 			<h1
-				class="pb-6 bg-linear-to-r from-green-600 to-teal-600 bg-clip-text text-center text-5xl font-black text-transparent"
+				class="bg-linear-to-r from-green-600 to-teal-600 bg-clip-text pb-6 text-center text-5xl font-black text-transparent"
 			>
 				Créer
 			</h1>

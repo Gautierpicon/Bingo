@@ -2,12 +2,17 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import BackButton from '$lib/components/BackButton.svelte';
+	import { players, isHost } from '../store';
+	import profilImg from '$lib/assets/profil.png';
 
 	let formRef = null;
-	let gameCode = '';
+	let codeInput = '';
 	let playerName = '';
 
 	onMount(() => {
+		players.set([]);
+		isHost.set(false);
+
 		gsap.fromTo(
 			formRef,
 			{
@@ -26,14 +31,25 @@
 	});
 
 	function joinGame() {
-		if (gameCode.trim() && playerName.trim()) {
-			localStorage.setItem('bingo_group_name', gameCode.trim());
+		if (codeInput.trim() && playerName.trim()) {
+			localStorage.setItem('bingo_group_name', codeInput.trim());
 			localStorage.setItem('bingo_player_name', playerName.trim());
-			window.location.href = '/jeu';
+
+			const newPlayer = {
+				id: Date.now(),
+				pseudo: playerName.trim(),
+				photo: profilImg,
+				isHost: false
+			};
+
+			players.set([newPlayer]);
+			isHost.set(false);
+
+			window.location.href = '/salon';
 		}
 	}
 
-	$: isFormValid = gameCode.trim() && playerName.trim();
+	$: isFormValid = codeInput.trim() && playerName.trim();
 </script>
 
 <div
@@ -44,7 +60,7 @@
 	<div bind:this={formRef} class="flex w-full max-w-md flex-1 flex-col justify-center py-8">
 		<div class="rounded-3xl border-4 border-white bg-white/90 p-8 shadow-2xl backdrop-blur-sm">
 			<h1
-				class="pb-7 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-center text-5xl font-black text-transparent"
+				class="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text pb-7 text-center text-5xl font-black text-transparent"
 			>
 				Rejoindre
 			</h1>
@@ -56,7 +72,7 @@
 				<input
 					id="gameCode"
 					type="text"
-					bind:value={gameCode}
+					bind:value={codeInput}
 					placeholder="Ex: ABC123"
 					class="w-full rounded-2xl border-4 border-gray-200 bg-white px-4 py-4 text-center text-2xl font-bold text-gray-800 transition-all focus:border-blue-500 focus:ring-4 focus:ring-blue-200 focus:outline-none"
 					onkeypress={(e) => e.key === 'Enter' && document.getElementById('playerName')?.focus()}

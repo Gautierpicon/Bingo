@@ -19,3 +19,17 @@ if (typeof window !== 'undefined') {
 		sessionStorage.setItem('hasPlayedGridAnimation', value);
 	});
 }
+
+export const gameCode = writable('');
+
+export const players = writable([]);
+
+export const isHost = writable(false);
+
+if (typeof window !== 'undefined') {
+	isHost.set(localStorage.getItem('isHost') === 'true');
+
+	isHost.subscribe((value) => {
+		localStorage.setItem('isHost', value);
+	});
+}

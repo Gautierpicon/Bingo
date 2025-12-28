@@ -1,12 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { players, isHost } from './store';
 	import githubImg from '$lib/assets/github.png';
 
 	let titleRef = null;
 	let buttonsRef = [];
 
 	onMount(() => {
+		players.set([]);
+		isHost.set(false);
+
 		gsap.fromTo(
 			[titleRef, ...buttonsRef.filter(Boolean)],
 			{
