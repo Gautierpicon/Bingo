@@ -180,28 +180,17 @@
 			</h1>
 
 			<div class="mb-4 md:mb-6">
-				<p class="mb-2 text-center text-lg font-bold text-gray-700 md:mb-4 md:text-xl">
-					Code de la partie
+				<p class="text-center text-lg font-bold text-gray-700 md:text-xl">
+					Code de la partie:
 				</p>
-				<button
-					onclick={copyCode}
-					class="group relative w-full cursor-pointer rounded-2xl border-4 border-indigo-300 bg-indigo-50 px-4 py-3 transition-all hover:border-indigo-400 hover:bg-indigo-100"
-					title="Cliquer pour copier"
-				>
-					<p class="text-center text-3xl font-black text-gray-800 md:text-4xl">
-						{roomCode}
-					</p>
-					<span
-						class="mt-1 block text-xs text-indigo-600 opacity-0 transition-opacity group-hover:opacity-100 md:text-sm"
-					>
-						📋 Cliquer pour copier
-					</span>
-				</button>
+				<p class="text-center text-3xl font-black text-gray-800 md:text-4xl">
+					{roomCode}
+				</p>
 			</div>
 
 			<div class="mb-4 md:mb-6">
 				<p class="mb-3 text-center text-xl font-bold text-gray-700 md:mb-4 md:text-2xl">
-					Joueurs ({players.length})
+					{players.length} joueurs:
 				</p>
 				<div class="grid auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
 					{#each players as player, index (player.id)}
