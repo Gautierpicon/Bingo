@@ -8,7 +8,7 @@ Make your events more fun
 - Synchronised play between players
 - Personalise the bingo squares
 - customise your game: free centre square and/or mixed grid for each player
-- PWA available
+- PWA available: Open the Website > Android: Tap the three-dot menu then "Install App" or "Add to Home Screen" / iOS with safari: Tap the Share icon > "Add to Home Screen" > The app icon will appear on your home screen. Tap it to open the PWA like a native app
 
 ## Tech Stack
 
