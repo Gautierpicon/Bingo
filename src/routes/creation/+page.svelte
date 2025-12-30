@@ -34,14 +34,12 @@
 		);
 	});
 
-	// Génère un code unique à 6 caractères
 	function generateRoomCode() {
-		const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Sans caractères ambigus
+		const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 		let code = '';
 		for (let i = 0; i < 6; i++) {
 			code += chars.charAt(Math.floor(Math.random() * chars.length));
 		}
-		// Formate le code: XXX XXX
 		return code.slice(0, 3) + ' ' + code.slice(3);
 	}
 
@@ -52,13 +50,12 @@
 		errorMessage = '';
 
 		try {
-			// 1. Créer le salon dans Supabase
 			const roomCode = generateRoomCode();
 			const { data: room, error: roomError } = await supabase
 				.from('rooms')
 				.insert([
 					{
-						code: roomCode.replace(' ', ''), // Stocke sans espace
+						code: roomCode.replace(' ', ''),
 						name: groupName.trim(),
 						use_star: $useStar,
 						status: 'waiting'
@@ -69,7 +66,6 @@
 
 			if (roomError) throw roomError;
 
-			// 2. Ajouter l'hôte comme joueur
 			const { data: player, error: playerError } = await supabase
 				.from('players')
 				.insert([
@@ -84,14 +80,12 @@
 
 			if (playerError) throw playerError;
 
-			// 3. Stocker localement
 			localStorage.setItem('bingo_room_id', room.id);
 			localStorage.setItem('bingo_room_code', roomCode);
 			localStorage.setItem('bingo_group_name', groupName.trim());
 			localStorage.setItem('bingo_player_id', player.id);
 			localStorage.setItem('bingo_player_name', playerName.trim());
 
-			// 4. Mettre à jour les stores
 			const host = {
 				id: player.id,
 				pseudo: playerName.trim(),
@@ -102,7 +96,6 @@
 			players.set([host]);
 			isHost.set(true);
 
-			// 5. Rediriger vers le salon
 			goto('/salon');
 		} catch (error) {
 			console.error('Erreur lors de la création du salon:', error);
