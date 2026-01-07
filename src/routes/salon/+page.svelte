@@ -228,7 +228,7 @@
 
 			<div class="mb-4 md:mb-6">
 				<p class="mb-3 text-center text-xl font-bold text-black md:mb-4 md:text-2xl">
-					{players.length} joueurs:
+					{players.length} joueur{players.length > 1 ? 's' : ''}:
 				</p>
 				<div class="grid auto-rows-fr grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4">
 					{#each players as player, index (player.id)}
